@@ -1,4 +1,4 @@
-package com.example.projectn1.dio;
+package com.example.projectn1.dto;
 
 import com.google.gson.annotations.SerializedName;
 

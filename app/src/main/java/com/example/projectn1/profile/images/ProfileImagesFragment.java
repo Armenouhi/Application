@@ -14,9 +14,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.projectn1.R;
-import com.example.projectn1.dio.Photo;
-import com.example.projectn1.dio.SearchPhotos;
-import com.example.projectn1.home.Image;
+import com.example.projectn1.dto.Photo;
+import com.example.projectn1.dto.SearchPhotos;
 import com.example.projectn1.profile.fullPages.FullImageFragment;
 import com.example.projectn1.profile.fullPages.OnClickFullExhibitor;
 
@@ -46,7 +45,7 @@ public class ProfileImagesFragment extends Fragment implements OnClickFullExhibi
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        com.example.projectn1.dio.Images images  = com.example.projectn1.dio.Images.create();
+        com.example.projectn1.dto.Images images  = com.example.projectn1.dto.Images.create();
         Call<SearchPhotos> nature = images.searchImage("city");
 
         nature.enqueue(new Callback<SearchPhotos>() {

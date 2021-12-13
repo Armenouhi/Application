@@ -15,11 +15,10 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.projectn1.R;
-import com.example.projectn1.dio.Images;
-import com.example.projectn1.dio.Photo;
-import com.example.projectn1.dio.SearchPhotos;
+import com.example.projectn1.dto.Images;
+import com.example.projectn1.dto.Photo;
+import com.example.projectn1.dto.SearchPhotos;
 import com.example.projectn1.home.comments.CommentsFragment;
-import com.example.projectn1.home.dialogBottomFilters.AddCommentDBFragment;
 import com.example.projectn1.profile.ProfileFragment;
 
 import java.util.ArrayList;

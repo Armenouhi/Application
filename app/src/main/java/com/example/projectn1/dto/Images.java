@@ -1,4 +1,4 @@
-package com.example.projectn1.dio;
+package com.example.projectn1.dto;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

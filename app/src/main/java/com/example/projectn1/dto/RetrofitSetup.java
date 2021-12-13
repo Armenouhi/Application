@@ -1,4 +1,4 @@
-package com.example.projectn1.dio;
+package com.example.projectn1.dto;
 
 import okhttp3.OkHttpClient;
 import retrofit2.converter.gson.GsonConverterFactory;
