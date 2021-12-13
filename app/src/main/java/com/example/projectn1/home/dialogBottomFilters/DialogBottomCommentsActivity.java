@@ -23,5 +23,7 @@ public class DialogBottomCommentsActivity extends AppCompatActivity {
         addFiltersBottomDialogFragment.show(getSupportFragmentManager(),
                 "add_photo_dialog_fragment");
     }
+
+
 }
 

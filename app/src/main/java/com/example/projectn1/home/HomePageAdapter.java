@@ -70,7 +70,6 @@ public class HomePageAdapter extends RecyclerView.Adapter<HomePageHolder> {
 //            commentsActivity.initDialogFragment();
             clickCommentListener.addComment(commentButton);
             System.out.println("mi ban");
-            commentsActivity.initDialogFragment();
         });
 
     }
