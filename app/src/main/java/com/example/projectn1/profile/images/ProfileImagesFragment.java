@@ -14,8 +14,18 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.projectn1.R;
+import com.example.projectn1.dio.Photo;
+import com.example.projectn1.dio.SearchPhotos;
+import com.example.projectn1.home.Image;
 import com.example.projectn1.profile.fullPages.FullImageFragment;
 import com.example.projectn1.profile.fullPages.OnClickFullExhibitor;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ProfileImagesFragment extends Fragment implements OnClickFullExhibitor {
     View view;
@@ -36,6 +46,33 @@ public class ProfileImagesFragment extends Fragment implements OnClickFullExhibi
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        com.example.projectn1.dio.Images images  = com.example.projectn1.dio.Images.create();
+        Call<SearchPhotos> nature = images.searchImage("city");
+
+        nature.enqueue(new Callback<SearchPhotos>() {
+            @Override
+            public void onResponse(Call<SearchPhotos> call, Response<SearchPhotos> response) {
+                SearchPhotos body = response.body();
+                if (body != null) {
+                    List<Photo> photos = body.getPhotos();
+
+                    ArrayList<Images> profilePhoto = new ArrayList<>();
+
+                    for (Photo photo : photos) {
+
+                        profilePhoto.add(new Images(
+                                photo.getSrc().getLargeUrl()));
+                    }
+                    adapter.setImages(profilePhoto);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SearchPhotos> call, Throwable t) {
+                System.out.println(t.getLocalizedMessage());
+            }
+        });
+
 
     }
 
@@ -53,7 +90,7 @@ public class ProfileImagesFragment extends Fragment implements OnClickFullExhibi
 
         adapter.setOnClickExhibitor(this);
 
-        adapter.setImages(Images.getImages());
+//        adapter.setImages(Images.getImages());
         recyclerView.setAdapter(adapter);
 
     }

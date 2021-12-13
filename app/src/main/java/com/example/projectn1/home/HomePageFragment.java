@@ -18,6 +18,7 @@ import com.example.projectn1.R;
 import com.example.projectn1.dio.Images;
 import com.example.projectn1.dio.Photo;
 import com.example.projectn1.dio.SearchPhotos;
+import com.example.projectn1.home.dialogBottomFilters.AddCommentDBFragment;
 import com.example.projectn1.profile.ProfileFragment;
 
 import java.util.ArrayList;
@@ -28,7 +29,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class HomePageFragment extends Fragment
-        implements OnLikeListener, OnOpenPageListener{
+        implements OnLikeListener, OnOpenPageListener, OnClickCommentListener{
+
 
 
     HomePageAdapter adapter = new HomePageAdapter();
@@ -110,8 +112,9 @@ public class HomePageFragment extends Fragment
 
         adapter.setOnLikeListener(this);
         adapter.setOpenPageClickListener(this);
+        adapter.setClickCommentListener(this);
 
-        adapter.setImages(Image.getImages());
+//        adapter.setImages(Image.getImages());
         recyclerView.setAdapter(adapter);
     }
 
@@ -127,4 +130,7 @@ public class HomePageFragment extends Fragment
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
+
+    @Override
+    public void addComment(AppCompatImageView comment) {}
 }

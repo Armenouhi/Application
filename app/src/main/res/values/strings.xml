@@ -12,4 +12,7 @@
     <string name="full_name">Name Surname</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="save">Save</string>
+    <string name="message">Message</string>
+    <string name="comment">Comment N1</string>
 </resources>

@@ -1,5 +1,7 @@
 package com.example.projectn1.home;
 
+import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,10 +9,13 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.projectn1.R;
+import com.example.projectn1.home.dialogBottomFilters.AddCommentDBFragment;
+import com.example.projectn1.home.dialogBottomFilters.DialogBottomCommentsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +24,8 @@ public class HomePageAdapter extends RecyclerView.Adapter<HomePageHolder> {
     ArrayList<Image> homeImages = new ArrayList<>();
     private OnLikeListener onLike;
     private OnOpenPageListener openPageListener;
+    private OnClickCommentListener clickCommentListener;
+    DialogBottomCommentsActivity commentsActivity;
 
     public void setOnLikeListener(OnLikeListener onLikeListener) {
         onLike = onLikeListener;
@@ -26,6 +33,10 @@ public class HomePageAdapter extends RecyclerView.Adapter<HomePageHolder> {
 
     public void setOpenPageClickListener (OnOpenPageListener openPageListener) {
         this.openPageListener = openPageListener;
+    }
+
+    public void setClickCommentListener (OnClickCommentListener clickCommentListener) {
+        this.clickCommentListener = clickCommentListener;
     }
 
 
@@ -45,6 +56,7 @@ public class HomePageAdapter extends RecyclerView.Adapter<HomePageHolder> {
         holder.initData(images);
 
         AppCompatImageView imgButton = holder.itemView.findViewById(R.id.logo);
+        AppCompatImageView commentButton = holder.itemView.findViewById(R.id.imageMessage);
 
         holder.image.setOnClickListener(view -> {
             openPageListener.openPage(imgButton);
@@ -52,6 +64,13 @@ public class HomePageAdapter extends RecyclerView.Adapter<HomePageHolder> {
 
         holder.title.setOnClickListener(view -> {
             openPageListener.openPage(imgButton);
+        });
+
+        holder.comment.setOnClickListener(view -> {
+//            commentsActivity.initDialogFragment();
+            clickCommentListener.addComment(commentButton);
+            System.out.println("mi ban");
+            commentsActivity.initDialogFragment();
         });
 
     }
@@ -110,5 +129,6 @@ class HomePageHolder extends RecyclerView.ViewHolder {
                 changeColor = false;
             }
         });
+
     }
 }
