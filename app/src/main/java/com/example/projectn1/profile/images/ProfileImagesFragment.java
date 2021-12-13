@@ -46,9 +46,9 @@ public class ProfileImagesFragment extends Fragment implements OnClickFullExhibi
         super.onViewCreated(view, savedInstanceState);
 
         com.example.projectn1.dto.Images images  = com.example.projectn1.dto.Images.create();
-        Call<SearchPhotos> nature = images.searchImage("city");
+        Call<SearchPhotos> city = images.searchImage("city");
 
-        nature.enqueue(new Callback<SearchPhotos>() {
+        city.enqueue(new Callback<SearchPhotos>() {
             @Override
             public void onResponse(Call<SearchPhotos> call, Response<SearchPhotos> response) {
                 SearchPhotos body = response.body();

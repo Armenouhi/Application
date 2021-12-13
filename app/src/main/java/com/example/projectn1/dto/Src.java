@@ -15,6 +15,10 @@ public class Src {
     @SerializedName("large")
     String largeUrl;
 
+    @SerializedName("large2x")
+    String large2xUrl;
+
+
     @SerializedName("portrait")
     String portraitUrl;
 
@@ -44,4 +48,6 @@ public class Src {
     public String getMediumUrl() {
         return mediumUrl;
     }
+
+    public String getLarge2xUrl() { return large2xUrl; }
 }
