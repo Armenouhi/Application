@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">ProjectN1</string>
+    <!-- Home Page -->
+    <string name="home">Home</string>
+    <string name="comment_hint">Write Comment here</string>
+    <string name="submit_comment">Submit Comment</string>
+
+    <!-- Profile Page -->
+    <string name="profile">Profile</string>
+    <string name="posts">Posts</string>
+    <string name="followers">Followers</string>
+    <string name="full_name">Name Surname</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
