@@ -16,7 +16,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.projectn1.R;
 import com.example.projectn1.dto.SearchVideos;
 import com.example.projectn1.dto.Video;
+import com.example.projectn1.profile.ProfileFragment;
 import com.example.projectn1.profile.fullPages.FullImageFragment;
+import com.example.projectn1.profile.fullPages.FullViewFragment;
 import com.example.projectn1.profile.fullPages.OnClickFullExhibitor;
 
 import java.util.ArrayList;
@@ -62,10 +64,15 @@ public class ProfileVideosFragment extends Fragment implements OnClickFullExhibi
 
                     ArrayList<Videos> profileVideo = new ArrayList<>();
                     if (videos != null) {
-                        for (Video video : videos) {
+                       /* for (Video video : videos) {
 
                             profileVideo.add(new Videos(
                                     video.getSrc().getLargeUrl()));
+                        }*/
+
+                        for (Video video : videos) {
+
+                            System.out.println(video);
                         }
                         adapter.setVideos(profileVideo);
                     }
@@ -101,13 +108,20 @@ public class ProfileVideosFragment extends Fragment implements OnClickFullExhibi
     public void onShowFull(String videoUrl) {
         System.out.println(videoUrl);
 
-        Bundle bundle = new Bundle();
+        /*Bundle bundle = new Bundle();
         bundle.putString("imageUrl", videoUrl);
         FullImageFragment fullImageFragment = new FullImageFragment();
         fullImageFragment.setArguments(bundle);
         FragmentManager fragmentManager = getParentFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragmentHomePage, fullImageFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();*/
+
+        FullViewFragment viewFragment = new FullViewFragment();
+        FragmentManager fragmentManager = getParentFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragmentHomePage, viewFragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
