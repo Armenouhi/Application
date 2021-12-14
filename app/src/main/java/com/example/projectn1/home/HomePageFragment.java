@@ -147,8 +147,6 @@ public class HomePageFragment extends Fragment
                 AddCommentDBFragment.newInstance();
         addFiltersBottomDialogFragment.show(getParentFragmentManager(),
                 "add_photo_dialog_fragment");
-
-        System.out.println("Mi ban");
     }
 
     @SuppressLint("QueryPermissionsNeeded")

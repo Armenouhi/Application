@@ -16,6 +16,10 @@ public class Videos {
         return videoUrl;
     }
 
+    /*public Videos(int user, String s1, String s2, String largeUrl, int i) {
+        this.user = user; fullName = s1 + s2; imageUrl = largeUrl; this.i = i;
+    }*/
+
     public static List<Videos> getVideos() {
         ArrayList<Videos> videoList = new ArrayList<>();
         videoList.add(new Videos(
