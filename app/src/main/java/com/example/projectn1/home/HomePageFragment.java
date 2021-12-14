@@ -25,6 +25,7 @@ import com.example.projectn1.dto.Images;
 import com.example.projectn1.dto.Photo;
 import com.example.projectn1.dto.SearchPhotos;
 import com.example.projectn1.home.comments.CommentsFragment;
+import com.example.projectn1.home.dialogBottomFilters.AddCommentDBFragment;
 import com.example.projectn1.profile.ProfileFragment;
 
 import java.util.ArrayList;
@@ -141,12 +142,11 @@ public class HomePageFragment extends Fragment
 
     @Override
     public void addComment(AppCompatImageView comment) {
-        CommentsFragment commentsFragment = new CommentsFragment();
-        FragmentManager fragmentManager = getParentFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragmentHomePage, commentsFragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
+
+        AddCommentDBFragment addFiltersBottomDialogFragment =
+                AddCommentDBFragment.newInstance();
+        addFiltersBottomDialogFragment.show(getParentFragmentManager(),
+                "add_photo_dialog_fragment");
 
         System.out.println("Mi ban");
     }
