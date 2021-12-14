@@ -104,10 +104,10 @@ public class ProfileImagesFragment extends Fragment implements OnClickFullExhibi
         fullImageFragment.setArguments(bundle);
         FragmentManager fragmentManager = getParentFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragmentHomePage, fullImageFragment);
+        fragmentTransaction.add(R.id.fragmentHomePage, fullImageFragment);
         fragmentTransaction.addToBackStack(null);
 
-        fragmentTransaction.commitNow();
+        fragmentTransaction.commit();
 
     }
 }
