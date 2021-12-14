@@ -51,18 +51,17 @@
     <View
         android:id="@+id/iconsView"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="@dimen/forty"
         android:background="@color/blue_200"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/nature" />
+        app:layout_constraintStart_toStartOf="@id/nature"
+        app:layout_constraintEnd_toEndOf="@id/nature"
+        app:layout_constraintTop_toBottomOf="@id/nature"/>
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imageHeart"
-        android:layout_width="@dimen/fifty"
-        android:layout_height="@dimen/fifty"
-        android:layout_marginTop="@dimen/ten"
+        android:layout_width="@dimen/forty"
+        android:layout_height="@dimen/forty"
         app:layout_constraintStart_toStartOf="@id/iconsView"
         app:layout_constraintTop_toTopOf="@id/iconsView"
         app:srcCompat="@drawable/ic_baseline_favorite_border_24"
@@ -70,8 +69,8 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imageMessage"
-        android:layout_width="@dimen/fifty"
-        android:layout_height="@dimen/fifty"
+        android:layout_width="@dimen/forty"
+        android:layout_height="@dimen/forty"
         app:layout_constraintBottom_toBottomOf="@+id/imageHeart"
         android:layout_marginStart="@dimen/fifteen"
         app:layout_constraintStart_toEndOf="@id/imageHeart"
@@ -81,10 +80,10 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/shareIcon"
-        android:layout_width="@dimen/fifty"
-        android:layout_height="@dimen/fifty"
+        android:layout_width="@dimen/forty"
+        android:layout_height="@dimen/forty"
+        app:layout_constraintEnd_toEndOf="@id/iconsView"
         app:layout_constraintBottom_toBottomOf="@id/imageMessage"
-        app:layout_constraintStart_toEndOf="@id/imageMessage"
         app:layout_constraintTop_toTopOf="@+id/imageMessage"
         app:srcCompat="@drawable/ic_baseline_share_24"
         tools:ignore="DuplicateIds" />

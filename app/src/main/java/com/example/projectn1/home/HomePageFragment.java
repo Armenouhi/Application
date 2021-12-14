@@ -90,7 +90,7 @@ public class HomePageFragment extends Fragment
                         }
 
                         profilePhoto.add(new Image(
-                                R.drawable.user,
+                                R.drawable.photographer,
                                 s1, s2,
                                 photo.getSrc().getLargeUrl(), 0));
                     }
