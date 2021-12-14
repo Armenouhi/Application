@@ -25,6 +25,7 @@ public class HomePageAdapter extends RecyclerView.Adapter<HomePageHolder> {
     private OnLikeListener onLike;
     private OnOpenPageListener openPageListener;
     private OnClickCommentListener clickCommentListener;
+    private OnClickShare shareListener;
     DialogBottomCommentsActivity commentsActivity;
 
     public void setOnLikeListener(OnLikeListener onLikeListener) {
@@ -37,6 +38,10 @@ public class HomePageAdapter extends RecyclerView.Adapter<HomePageHolder> {
 
     public void setClickCommentListener (OnClickCommentListener clickCommentListener) {
         this.clickCommentListener = clickCommentListener;
+    }
+
+    public void setOnClickShare (OnClickShare share) {
+        shareListener = share;
     }
 
 
@@ -55,21 +60,27 @@ public class HomePageAdapter extends RecyclerView.Adapter<HomePageHolder> {
         Image images = homeImages.get(position);
         holder.initData(images);
 
-        AppCompatImageView imgButton = holder.itemView.findViewById(R.id.logo);
+        AppCompatImageView openButton = holder.itemView.findViewById(R.id.logo);
         AppCompatImageView commentButton = holder.itemView.findViewById(R.id.imageMessage);
+        AppCompatImageView buttonShare = holder.itemView.findViewById(R.id.shareIcon);
 
         holder.image.setOnClickListener(view -> {
-            openPageListener.openPage(imgButton);
+            openPageListener.openPage(openButton);
         });
 
         holder.title.setOnClickListener(view -> {
-            openPageListener.openPage(imgButton);
+            openPageListener.openPage(openButton);
         });
 
         holder.comment.setOnClickListener(view -> {
 //            commentsActivity.initDialogFragment();
             clickCommentListener.addComment(commentButton);
             System.out.println("mi ban");
+        });
+
+        holder.shareI.setOnClickListener(v -> {
+            shareListener.share(buttonShare);
+            System.out.println("share");
         });
 
     }
@@ -95,6 +106,7 @@ class HomePageHolder extends RecyclerView.ViewHolder {
     AppCompatImageView imageView = itemView.findViewById(R.id.nature);
     AppCompatImageView heart = itemView.findViewById(R.id.imageHeart);
     AppCompatImageView comment = itemView.findViewById(R.id.imageMessage);
+    AppCompatImageView shareI = itemView.findViewById(R.id.shareIcon);
 
     public HomePageHolder(@NonNull View itemView) {
         super(itemView);

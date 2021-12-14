@@ -1,6 +1,12 @@
 package com.example.projectn1.home;
 
+import android.annotation.SuppressLint;
+import android.app.Service;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,12 +35,12 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class HomePageFragment extends Fragment
-        implements OnLikeListener, OnOpenPageListener, OnClickCommentListener{
-
+        implements OnLikeListener, OnOpenPageListener, OnClickCommentListener, OnClickShare {
 
 
     HomePageAdapter adapter = new HomePageAdapter();
     View view;
+
     @Nullable
     @Override
     public View onCreateView(
@@ -57,7 +63,7 @@ public class HomePageFragment extends Fragment
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Images images  = Images.create();
+        Images images = Images.create();
         Call<SearchPhotos> nature = images.searchImage("nature");
 
         nature.enqueue(new Callback<SearchPhotos>() {
@@ -113,13 +119,15 @@ public class HomePageFragment extends Fragment
         adapter.setOnLikeListener(this);
         adapter.setOpenPageClickListener(this);
         adapter.setClickCommentListener(this);
+        adapter.setOnClickShare(this);
 
 //        adapter.setImages(Image.getImages());
         recyclerView.setAdapter(adapter);
     }
 
     @Override
-    public void onLike(AppCompatImageView like) {}
+    public void onLike(AppCompatImageView like) {
+    }
 
     @Override
     public void openPage(AppCompatImageView page) {
@@ -141,5 +149,17 @@ public class HomePageFragment extends Fragment
         fragmentTransaction.commit();
 
         System.out.println("Mi ban");
+    }
+
+    @SuppressLint("QueryPermissionsNeeded")
+    @Override
+    public void share(AppCompatImageView buttonShare) {
+        Intent sendIntent = new Intent(Intent.ACTION_SEND);
+        sendIntent.putExtra(
+                Intent.EXTRA_TEXT,
+                "Send a simple tex"
+        );
+        sendIntent.setType("text/plain");
+        startActivity(sendIntent);
     }
 }

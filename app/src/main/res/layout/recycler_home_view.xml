@@ -79,5 +79,15 @@
         app:srcCompat="@drawable/ic_baseline_message_24"
         tools:ignore="DuplicateIds" />
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/shareIcon"
+        android:layout_width="@dimen/fifty"
+        android:layout_height="@dimen/fifty"
+        app:layout_constraintBottom_toBottomOf="@id/imageMessage"
+        app:layout_constraintStart_toEndOf="@id/imageMessage"
+        app:layout_constraintTop_toTopOf="@+id/imageMessage"
+        app:srcCompat="@drawable/ic_baseline_share_24"
+        tools:ignore="DuplicateIds" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

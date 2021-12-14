@@ -7,10 +7,10 @@ public class Video {
     int id;
 
     @SerializedName("width")
-    int width;
+    String width;
 
     @SerializedName("height")
-    int height;
+    String height;
 
     @SerializedName("src")
     Src src;
@@ -19,11 +19,11 @@ public class Video {
         return id;
     }
 
-    public int getWidth() {
+    public String getWidth() {
         return width;
     }
 
-    public int getHeight() {
+    public String getHeight() {
         return height;
     }
 

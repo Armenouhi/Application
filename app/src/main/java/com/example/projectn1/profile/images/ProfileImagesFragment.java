@@ -106,6 +106,8 @@ public class ProfileImagesFragment extends Fragment implements OnClickFullExhibi
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragmentHomePage, fullImageFragment);
         fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
+
+        fragmentTransaction.commitNow();
+
     }
 }
