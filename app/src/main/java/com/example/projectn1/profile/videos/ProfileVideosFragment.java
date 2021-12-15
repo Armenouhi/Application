@@ -50,7 +50,7 @@ public class ProfileVideosFragment extends Fragment implements OnClickFullExhibi
         super.onViewCreated(view, savedInstanceState);
 
         com.example.projectn1.dto.Videos videosS = com.example.projectn1.dto.Videos.create();
-        Call<SearchVideos> camera = videosS.searchVideo("santa");
+        Call<SearchVideos> camera = videosS.searchVideo("videos");
 
         camera.enqueue(new Callback<SearchVideos>() {
             @Override
@@ -69,8 +69,8 @@ public class ProfileVideosFragment extends Fragment implements OnClickFullExhibi
 
                             System.out.println(video);
 
-                            /*profileVideo.add(new Videos(
-                                    video.getSrc().getLargeUrl()));*/
+//                            profileVideo.add(new Videos(video.getWidth()));
+                            profileVideo.add(new Videos(video.getImage()));
                         }
                         adapter.setVideos(profileVideo);
                     }

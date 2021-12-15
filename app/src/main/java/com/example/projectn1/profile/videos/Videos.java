@@ -1,7 +1,5 @@
 package com.example.projectn1.profile.videos;
 
-import com.example.projectn1.profile.images.Images;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,10 +13,6 @@ public class Videos {
     public String getVideoUrl() {
         return videoUrl;
     }
-
-    /*public Videos(int user, String s1, String s2, String largeUrl, int i) {
-        this.user = user; fullName = s1 + s2; imageUrl = largeUrl; this.i = i;
-    }*/
 
     public static List<Videos> getVideos() {
         ArrayList<Videos> videoList = new ArrayList<>();

@@ -2,32 +2,50 @@ package com.example.projectn1.dto;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class Video {
     @SerializedName("id")
     int id;
 
     @SerializedName("width")
-    String width;
+    int width;
 
     @SerializedName("height")
-    String height;
+    int height;
 
-    @SerializedName("src")
-    Src src;
+    @SerializedName("url")
+    String url;
+
+    @SerializedName("image")
+    String image;
+
+    @SerializedName("duration")
+    int duration;
 
     public int getId() {
         return id;
     }
 
-    public String getWidth() {
+    public int getWidth() {
         return width;
     }
 
-    public String getHeight() {
+    public int getHeight() {
         return height;
     }
 
-    public Src getSrc() {
-        return src;
+    public String getUrl() {
+        return url;
     }
+
+    public String getImage() {
+        return image;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+
 }
