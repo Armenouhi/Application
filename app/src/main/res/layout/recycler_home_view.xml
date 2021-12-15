@@ -60,8 +60,9 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imageHeart"
-        android:layout_width="@dimen/forty"
-        android:layout_height="@dimen/forty"
+        android:layout_width="@dimen/thirty_five"
+        android:layout_height="@dimen/thirty_five"
+        android:layout_marginStart="@dimen/ten"
         app:layout_constraintStart_toStartOf="@id/iconsView"
         app:layout_constraintTop_toTopOf="@id/iconsView"
         app:srcCompat="@drawable/ic_baseline_favorite_border_24"
@@ -69,8 +70,8 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imageMessage"
-        android:layout_width="@dimen/forty"
-        android:layout_height="@dimen/forty"
+        android:layout_width="@dimen/thirty_five"
+        android:layout_height="@dimen/thirty_five"
         app:layout_constraintBottom_toBottomOf="@+id/imageHeart"
         android:layout_marginStart="@dimen/fifteen"
         app:layout_constraintStart_toEndOf="@id/imageHeart"
@@ -80,8 +81,9 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/shareIcon"
-        android:layout_width="@dimen/forty"
-        android:layout_height="@dimen/forty"
+        android:layout_width="@dimen/thirty_five"
+        android:layout_height="@dimen/thirty_five"
+        android:layout_marginEnd="@dimen/ten"
         app:layout_constraintEnd_toEndOf="@id/iconsView"
         app:layout_constraintBottom_toBottomOf="@id/imageMessage"
         app:layout_constraintTop_toTopOf="@+id/imageMessage"

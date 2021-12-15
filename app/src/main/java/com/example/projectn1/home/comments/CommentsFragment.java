@@ -7,15 +7,16 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.projectn1.R;
 
-public class CommentsFragment extends Fragment {
+public class CommentsFragment extends Fragment implements OnSaveData{
     View view;
-    CommentAdapter adapter = new CommentAdapter();
+    CommentAdapter commentAdapter = new CommentAdapter();
     @Nullable
     @Override
     public View onCreateView(
@@ -24,7 +25,7 @@ public class CommentsFragment extends Fragment {
             @Nullable Bundle savedInstanceState
     ) {
 
-        view =  inflater.inflate(R.layout.alert_dialog_comment, container, false);
+        view =  inflater.inflate(R.layout.dialog_bottom_comment, container, false);
         initComments();
         return view;
     }
@@ -41,10 +42,14 @@ public class CommentsFragment extends Fragment {
 
         recyclerView.setLayoutManager(gridLayoutManager);
 
-        adapter.setSaveListener(this::initComments);
-
-        recyclerView.setAdapter(adapter);
+        commentAdapter.setSaveListener(this);
+        commentAdapter.setComments(Comment.getComments());
+        recyclerView.setAdapter(commentAdapter);
     }
 
 
+    @Override
+    public void onSave() {
+        System.out.println("Էլի մի բան");
+    }
 }

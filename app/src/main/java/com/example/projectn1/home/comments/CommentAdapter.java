@@ -19,7 +19,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentHolder> {
     private OnSaveData saveData;
 
     public void setSaveListener(OnSaveData saveData) {
-        saveData = saveData;
+        this.saveData = saveData;
     }
 
     @NonNull
@@ -38,6 +38,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentHolder> {
         AppCompatImageView saveBtn = holder.itemView.findViewById(R.id.save);
         saveBtn.setOnClickListener(v -> {
             System.out.println("Save data");
+            saveData.onSave();
         });
     }
 
@@ -46,7 +47,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentHolder> {
         return comments.size();
     }
 
-    public void setImages(List<Comment> comment) {
+    public void setComments(List<Comment> comment) {
         comments.clear();
         comments.addAll(comment);
         notifyDataSetChanged();

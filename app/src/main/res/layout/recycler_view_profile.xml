@@ -4,12 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/two">
+    android:padding="@dimen/one">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imageProfilePage"
-        android:layout_width="170dp"
-        android:layout_height="170dp"
+        android:layout_width="@dimen/two_hundred"
+        android:layout_height="@dimen/two_hundred_fifty"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

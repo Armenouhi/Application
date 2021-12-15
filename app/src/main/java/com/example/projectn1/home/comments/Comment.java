@@ -16,7 +16,7 @@ public class Comment {
         return text;
     }
 
-    public static List<Comment> getImages() {
+    public static List<Comment> getComments() {
         ArrayList<Comment> imgList = new ArrayList<>();
 
         imgList.add(new Comment(

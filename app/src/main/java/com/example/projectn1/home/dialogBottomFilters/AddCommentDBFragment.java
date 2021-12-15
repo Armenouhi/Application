@@ -23,6 +23,6 @@ public class AddCommentDBFragment extends BottomSheetDialogFragment {
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState
     ) {
-        return inflater.inflate(R.layout.alert_dialog_comment, container, false);
+        return inflater.inflate(R.layout.dialog_bottom_comment, container, false);
     }
 }
