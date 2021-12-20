@@ -1,5 +1,6 @@
 package com.example.projectn1.profile.videos;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,9 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.projectn1.R;
 import com.example.projectn1.dto.SearchVideos;
 import com.example.projectn1.dto.Video;
-import com.example.projectn1.profile.ProfileFragment;
-import com.example.projectn1.profile.fullPages.FullImageFragment;
-import com.example.projectn1.profile.fullPages.FullViewFragment;
+import com.example.projectn1.profile.fullPages.FullVideoFragment;
 import com.example.projectn1.profile.fullPages.OnClickFullExhibitor;
 
 import java.util.ArrayList;
@@ -66,12 +65,10 @@ public class ProfileVideosFragment extends Fragment implements OnClickFullExhibi
                     if (videos != null) {
 
                         for (Video video : videos) {
-
                             System.out.println(video);
-
-//                            profileVideo.add(new Videos(video.getWidth()));
                             profileVideo.add(new Videos(video.getImage()));
                         }
+                        System.out.println(profileVideo);
                         adapter.setVideos(profileVideo);
                     }
                     else {
@@ -101,7 +98,6 @@ public class ProfileVideosFragment extends Fragment implements OnClickFullExhibi
         recyclerView.setLayoutManager(gridLayoutManager);
 
         adapter.setOnClickExhibitor(this);
-        adapter.setVideos(Videos.getVideos());
         recyclerView.setAdapter(adapter);
     }
 
@@ -109,21 +105,15 @@ public class ProfileVideosFragment extends Fragment implements OnClickFullExhibi
     public void onShowFull(String videoUrl) {
         System.out.println(videoUrl);
 
-       /* Bundle bundle = new Bundle();
-        bundle.putString("imageUrl", videoUrl);
-        FullViewFragment fullVideoFragment = new FullViewFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("videoUrl", videoUrl);
+        FullVideoFragment fullVideoFragment = new FullVideoFragment();
         fullVideoFragment.setArguments(bundle);
-        FragmentManager fragmentManager = getParentFragmentManager();
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.fragmentHomePage, fullVideoFragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();*/
-
-        FullViewFragment viewFragment = new FullViewFragment();
-        FragmentManager fragmentManager = getParentFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.fragmentHomePage, viewFragment);
+        fragmentTransaction.add(R.id.simpleVideoView, fullVideoFragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
+
     }
 }

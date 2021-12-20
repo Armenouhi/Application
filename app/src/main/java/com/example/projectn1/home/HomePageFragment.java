@@ -152,6 +152,8 @@ public class HomePageFragment extends Fragment
     @SuppressLint("QueryPermissionsNeeded")
     @Override
     public void share(AppCompatImageView buttonShare) {
+        System.out.println("Comment");
+
         Intent sendIntent = new Intent(Intent.ACTION_SEND);
         sendIntent.putExtra(
                 Intent.EXTRA_TEXT,

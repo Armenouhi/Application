@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,53 +16,48 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CommentAdapter extends RecyclerView.Adapter<CommentHolder> {
-    ArrayList<Comment> comments = new ArrayList<>();
-    private OnSaveData saveData;
-
-    public void setSaveListener(OnSaveData saveData) {
-        this.saveData = saveData;
-    }
+    ArrayList<Comment> commentArrayList = new ArrayList<>();
 
     @NonNull
     @Override
     public CommentHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.recycler_view_comment,parent,false);
+                .inflate(R.layout.dialog_bottom_comment,parent,false);
         return new CommentHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull CommentHolder holder, int position) {
-        Comment comment = comments.get(position);
+        Comment comment = commentArrayList.get(position);
         holder.initData(comment);
 
-        AppCompatImageView saveBtn = holder.itemView.findViewById(R.id.save);
-        saveBtn.setOnClickListener(v -> {
-            System.out.println("Save data");
-            saveData.onSave();
+        AppCompatButton save = holder.itemView.findViewById(R.id.save);
+        save.setOnClickListener(v -> {
+            System.out.println("mi ban");
         });
     }
 
     @Override
     public int getItemCount() {
-        return comments.size();
+        return commentArrayList.size();
     }
 
     public void setComments(List<Comment> comment) {
-        comments.clear();
-        comments.addAll(comment);
+        commentArrayList.clear();
+        commentArrayList.addAll(comment);
         notifyDataSetChanged();
     }
 }
 
 class CommentHolder extends RecyclerView.ViewHolder {
-    AppCompatTextView comment = itemView.findViewById(R.id.comment);
+
+    AppCompatTextView comments = itemView.findViewById(R.id.comment);
 
     public CommentHolder(@NonNull View itemView) {
         super(itemView);
     }
 
     public void initData(Comment comment) {
-        this.comment.setText(comment.getText());
+        comments.setText(comment.getComment());
     }
 }

@@ -5,9 +5,14 @@ import java.util.List;
 
 public class Videos {
     String videoUrl;
+    int width;
 
     public Videos(String videoUrl) {
         this.videoUrl = videoUrl;
+    }
+
+    public Videos(int width) {
+        this.width = width;
     }
 
     public String getVideoUrl() {

@@ -42,7 +42,7 @@ public class CommentsFragment extends Fragment implements OnSaveData{
 
         recyclerView.setLayoutManager(gridLayoutManager);
 
-        commentAdapter.setSaveListener(this);
+//        commentAdapter.setSaveListener(this);
         commentAdapter.setComments(Comment.getComments());
         recyclerView.setAdapter(commentAdapter);
     }

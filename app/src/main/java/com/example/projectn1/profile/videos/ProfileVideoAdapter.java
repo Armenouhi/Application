@@ -38,8 +38,7 @@ public class ProfileVideoAdapter extends RecyclerView.Adapter<VideoHolder> {
     public void onBindViewHolder(@NonNull VideoHolder holder, int position) {
         Videos  videos= this.videos.get(position);
 
-        holder.imageViewProfile.setOnClickListener(view -> {
-            System.out.println(videos.getVideoUrl());
+        holder.imageVideoVProfile.setOnClickListener(view -> {
             exhibitor.onShowFull(videos.getVideoUrl());
         });
 
@@ -59,7 +58,7 @@ public class ProfileVideoAdapter extends RecyclerView.Adapter<VideoHolder> {
 }
 
 class VideoHolder extends RecyclerView.ViewHolder {
-    AppCompatImageView imageViewProfile = itemView.findViewById(R.id.imageProfilePage);
+    AppCompatImageView imageVideoVProfile = itemView.findViewById(R.id.imageProfilePage);
 
     public VideoHolder(@NonNull View itemView) {
         super(itemView);
@@ -68,6 +67,6 @@ class VideoHolder extends RecyclerView.ViewHolder {
     public void initData(Videos videos) {
         Glide.with(itemView.getContext())
                 .load(videos.getVideoUrl())
-                .into(imageViewProfile);
+                .into(imageVideoVProfile);
     }
 }

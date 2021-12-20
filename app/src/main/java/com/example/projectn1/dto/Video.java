@@ -47,5 +47,19 @@ public class Video {
         return duration;
     }
 
+    @SerializedName("video_files")
+    List<VideoFiles> videoFiles;
+
+    public List<VideoFiles> getVideoFiles() {
+        return videoFiles;
+    }
+
+    public List<VideoPictures> getVideoPictures() {
+        return videoPictures;
+    }
+
+    @SerializedName("video_pictures")
+    List<VideoPictures> videoPictures;
+
 
 }

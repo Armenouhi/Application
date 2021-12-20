@@ -6,14 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Comment {
-    String text;
+    String comment;
 
-    public Comment(String text) {
-        this.text = text;
+    public Comment(String comment) {
+        this.comment = comment;
     }
 
-    public String getText() {
-        return text;
+    public String getComment() {
+        return comment;
     }
 
     public static List<Comment> getComments() {

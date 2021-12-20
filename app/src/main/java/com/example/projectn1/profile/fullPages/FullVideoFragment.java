@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.MediaController;
 import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
@@ -13,8 +14,8 @@ import androidx.fragment.app.Fragment;
 
 import com.example.projectn1.R;
 
-public class FullViewFragment extends Fragment {
-    VideoView videoView;
+public class FullVideoFragment extends Fragment {
+    VideoView simpleVideoView;
 
     @Nullable
     @Override
@@ -24,20 +25,25 @@ public class FullViewFragment extends Fragment {
             @Nullable Bundle savedInstanceState
     ) {
         View view =   inflater.inflate(R.layout.full_video_layout, container, false);
-        videoView = view.findViewById(R.id.simpleVideoView);
+        simpleVideoView = view.findViewById(R.id.simpleVideoView);
         loadVideo();
         return  view;
     }
 
     private void loadVideo() {
-        VideoView simpleVideoView = (VideoView) videoView.findViewById(R.id.simpleVideoView);
-        if (getActivity() != null) {
-            simpleVideoView.setVideoURI(Uri.parse("android.resource://"
-                    + getActivity().getPackageName()
-                    + "/" + R.raw.armath));
+
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            String videoUrl = bundle.getString("videoUrl");
+            Uri uri = Uri.parse(videoUrl);
+            simpleVideoView.setVideoURI(uri);
+            simpleVideoView.setVideoPath(videoUrl);
+            MediaController mediaController = new MediaController(simpleVideoView.getContext());
+            mediaController.setAnchorView(simpleVideoView);
+            mediaController.setMediaPlayer(simpleVideoView);
+            simpleVideoView.setMediaController(mediaController);
             simpleVideoView.start();
-        } else {
-            System.out.println("Can't open this video ");
+            mediaController.show();
         }
     }
 }
