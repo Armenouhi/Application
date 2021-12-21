@@ -33,8 +33,11 @@ public class FullVideoFragment extends Fragment {
     private void loadVideo() {
 
         Bundle bundle = this.getArguments();
+
+//        System.out.println(bundle);
         if (bundle != null) {
             String videoUrl = bundle.getString("videoUrl");
+//            System.out.println(videoUrl);
             Uri uri = Uri.parse(videoUrl);
             simpleVideoView.setVideoURI(uri);
             simpleVideoView.setVideoPath(videoUrl);

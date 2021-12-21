@@ -3,6 +3,7 @@ package com.example.projectn1.dto;
 import com.google.gson.annotations.SerializedName;
 
 public class VideoPictures {
+
     @SerializedName("id")
     int id;
 

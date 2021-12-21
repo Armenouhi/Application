@@ -23,6 +23,13 @@ public class Video {
     @SerializedName("duration")
     int duration;
 
+    @SerializedName("src")
+    Src src;
+
+    public Src getSrc() {
+        return src;
+    }
+
     public int getId() {
         return id;
     }

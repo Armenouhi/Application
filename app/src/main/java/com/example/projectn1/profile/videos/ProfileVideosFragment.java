@@ -65,8 +65,10 @@ public class ProfileVideosFragment extends Fragment implements OnClickFullExhibi
                     if (videos != null) {
 
                         for (Video video : videos) {
-                            System.out.println(video);
-                            profileVideo.add(new Videos(video.getImage()));
+                           /* System.out.println(video);
+                            profileVideo.add(new Videos(video.getImage()));*/
+                            profileVideo.add(new Videos(video.getImage(),
+                                    video.getVideoFiles().get(0).getLink()));
                         }
                         System.out.println(profileVideo);
                         adapter.setVideos(profileVideo);
@@ -103,7 +105,7 @@ public class ProfileVideosFragment extends Fragment implements OnClickFullExhibi
 
     @Override
     public void onShowFull(String videoUrl) {
-        System.out.println(videoUrl);
+//        System.out.println(videoUrl);
 
         Bundle bundle = new Bundle();
         bundle.putString("videoUrl", videoUrl);
@@ -111,7 +113,7 @@ public class ProfileVideosFragment extends Fragment implements OnClickFullExhibi
         fullVideoFragment.setArguments(bundle);
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.simpleVideoView, fullVideoFragment);
+        fragmentTransaction.add(R.id.fragmentHomePage, fullVideoFragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
 
