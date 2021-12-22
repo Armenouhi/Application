@@ -1,12 +1,8 @@
 package com.example.projectn1.home;
 
 import android.annotation.SuppressLint;
-import android.app.Service;
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,9 +20,11 @@ import com.example.projectn1.R;
 import com.example.projectn1.dto.Images;
 import com.example.projectn1.dto.Photo;
 import com.example.projectn1.dto.SearchPhotos;
-import com.example.projectn1.home.comments.CommentsFragment;
 import com.example.projectn1.home.dialogBottomFilters.AddCommentDBFragment;
 import com.example.projectn1.profile.ProfileFragment;
+import com.example.projectn1.room.AppDatabase;
+import com.example.projectn1.room.AuthorDao;
+import com.example.projectn1.room.AuthorsWithImage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -95,14 +93,33 @@ public class HomePageFragment extends Fragment
                                 photo.getSrc().getLargeUrl(), 0));
                     }
                     adapter.setImages(profilePhoto);
+                    saveToDB(profilePhoto);
                 }
             }
+
 
             @Override
             public void onFailure(Call<SearchPhotos> call, Throwable t) {
                 System.out.println(t.getLocalizedMessage());
             }
         });
+    }
+
+
+    private void saveToDB(ArrayList<Image> profilePhoto) {
+        AppDatabase db = AppDatabase.getInstance(getContext());
+        AuthorDao authorsDao = db.getAuthorsDao();
+
+        List<AuthorsWithImage> entityAuthors = new ArrayList<>();
+        for (Image dto: profilePhoto) {
+            entityAuthors.add(new AuthorsWithImage(
+                0,
+                    dto.getImageUrl(),
+                    dto.getFullName()
+            ));
+        }
+        
+        authorsDao.insertAll(entityAuthors);
     }
 
     private void listImages() {

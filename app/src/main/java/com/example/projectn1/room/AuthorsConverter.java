@@ -11,18 +11,15 @@ import java.util.List;
 public class AuthorsConverter {
 
     @TypeConverter
-    public static List<Authors> toList(String list) {
-        Type type = new TypeToken<List<Authors>>(){}.getType();
+    public static List<AuthorsWithImage> toList(String list) {
+        Type type = new TypeToken<List<AuthorsWithImage>>(){}.getType();
 
-        Gson gson = new Gson();
-        Object o = gson.fromJson(list, type);
-        return (List<Authors>) o;
+        return new Gson().fromJson(list, type);
     }
 
     @TypeConverter
-    public static String toStr(List<Authors> list) {
+    public static String toStr(List<AuthorsWithImage> list) {
         Gson gson = new Gson();
-        String json = gson.toJson(list);
-        return json;
+        return gson.toJson(list);
     }
 }

@@ -9,12 +9,15 @@ import java.util.List;
 
 @Dao
 public interface AuthorDao {
-    @Query("SELECT * FROM authors")
-    List<Authors> getAuthors();
+    @Query("SELECT * FROM image_authors")
+    List<AuthorsWithImage> getAuthors();
 
     @Insert
-    void insert (Authors authors);
+    void insert (AuthorsWithImage image_authors);
+
+    @Insert
+    void insertAll(List<AuthorsWithImage> posts);
 
     @Delete
-    void delete (Authors authors);
+    void delete (AuthorsWithImage image_authors);
 }
