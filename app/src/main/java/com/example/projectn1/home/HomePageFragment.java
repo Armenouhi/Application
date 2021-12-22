@@ -40,6 +40,8 @@ public class HomePageFragment extends Fragment
     HomePageAdapter adapter = new HomePageAdapter();
     View view;
 
+    boolean isInternetConnected = false;
+
     @Nullable
     @Override
     public View onCreateView(
@@ -60,7 +62,7 @@ public class HomePageFragment extends Fragment
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        boolean isInternetConnected = false;
+
         super.onViewCreated(view, savedInstanceState);
 
         Images images = Images.create();
@@ -111,9 +113,9 @@ public class HomePageFragment extends Fragment
 
             List<AuthorsWithImage> authorsWithImages = authorsDao.getAuthors();
 
-            ArrayList<AuthorsWithImage> dbPhoto = new ArrayList<>();
+            ArrayList<Image> dbPhoto = new ArrayList<>();
 
-            for (AuthorsWithImage photo : authorsWithImages) {
+            /*for (AuthorsWithImage photo : authorsWithImages) {
 
                 String[] s = photo.getFirstname().split(" ");
                 String s1 = "";
@@ -129,8 +131,22 @@ public class HomePageFragment extends Fragment
                 ));
             }
 
+            isInternetConnected = true;*/
+
+
+            for (AuthorsWithImage photo : authorsWithImages ) {
+                dbPhoto.add(new Image(
+                        photo.getUrl(),
+                        photo.getFirstname()
+                ));
+            }
             adapter.setImages(dbPhoto);
+
+            isInternetConnected = true;
         }
+
+
+
 
 
     }
