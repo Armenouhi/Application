@@ -13,19 +13,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recHomeView"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scrollbarAlwaysDrawVerticalTrack="true"
-        android:scrollbarFadeDuration="@integer/material_motion_duration_short_1"
-        android:scrollbarStyle="insideInset"
-        android:scrollbars="horizontal"
-        android:padding="@dimen/fifteen"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar_home_page"
-        tools:ignore="NotSibling" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar_home_page">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recHomeView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbarAlwaysDrawVerticalTrack="true"
+            android:scrollbarFadeDuration="@integer/material_motion_duration_short_1"
+            android:scrollbarStyle="insideInset"
+            android:scrollbars="horizontal"
+            android:padding="@dimen/fifteen"
+
+            tools:ignore="NotSibling" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

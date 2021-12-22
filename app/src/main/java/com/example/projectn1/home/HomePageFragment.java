@@ -15,6 +15,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.projectn1.R;
 import com.example.projectn1.dto.Images;
@@ -39,6 +40,7 @@ public class HomePageFragment extends Fragment
 
     HomePageAdapter adapter = new HomePageAdapter();
     View view;
+    SwipeRefreshLayout sR;
 
     boolean isInternetConnected = false;
 
@@ -55,7 +57,17 @@ public class HomePageFragment extends Fragment
                 container,
                 false
         );
+
+        sR = view.findViewById(R.id.swipe_refresh);
         listImages();
+
+        sR.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                sR.setRefreshing(false);
+                listImages();
+            }
+        });
 
         return view;
     }
@@ -101,7 +113,6 @@ public class HomePageFragment extends Fragment
                     }
                 }
 
-
                 @Override
                 public void onFailure(Call<SearchPhotos> call, Throwable t) {
                     System.out.println(t.getLocalizedMessage());
@@ -115,18 +126,6 @@ public class HomePageFragment extends Fragment
 
             ArrayList<Image> dbPhoto = new ArrayList<>();
 
-            /*for (AuthorsWithImage photo : authorsWithImages) {
-
-                dbPhoto.add(new AuthorsWithImage(
-                    photo.getId(),
-                        photo.getFirstname(),
-                        photo.getUrl()
-                ));
-            }
-
-            isInternetConnected = true;*/
-
-
             for (AuthorsWithImage photo : authorsWithImages ) {
                 dbPhoto.add(new Image(
                         photo.getUrl(),
@@ -137,11 +136,6 @@ public class HomePageFragment extends Fragment
 
             isInternetConnected = true;
         }
-
-
-
-
-
     }
 
 
