@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.projectn1.R;
 import com.example.projectn1.dto.Photo;
@@ -29,6 +30,7 @@ import retrofit2.Response;
 public class ProfileImagesFragment extends Fragment implements OnClickFullExhibitor {
     View view;
     ProfileImagesAdapter adapter = new ProfileImagesAdapter();
+    SwipeRefreshLayout swipeRefreshLayout;
 
     @Nullable
     @Override
@@ -37,7 +39,18 @@ public class ProfileImagesFragment extends Fragment implements OnClickFullExhibi
                              @Nullable Bundle savedInstanceState
     ) {
         view = inflater.inflate(R.layout.profile_layout, container, false);
+        swipeRefreshLayout = view.findViewById(R.id.swipeRefresh);
+
         imagesProfilePage();
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(false);
+                imagesProfilePage();
+            }
+        });
+
         return view;
     }
 

@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.projectn1.R;
 import com.example.projectn1.dto.SearchVideos;
@@ -30,6 +31,7 @@ import retrofit2.Response;
 public class ProfileVideosFragment extends Fragment implements OnClickFullExhibitor{
     View view;
     ProfileVideoAdapter adapter = new ProfileVideoAdapter();
+    SwipeRefreshLayout swipeRL;
 
     @Nullable
     @Override
@@ -39,7 +41,15 @@ public class ProfileVideosFragment extends Fragment implements OnClickFullExhibi
             @Nullable Bundle savedInstanceState
     ) {
         view = inflater.inflate(R.layout.profile_layout, container, false);
+        swipeRL = view.findViewById(R.id.swipeRefresh);
         videosProfilePage();
+        swipeRL.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRL.setRefreshing(false);
+                videosProfilePage();
+            }
+        });
         return view;
     }
 
@@ -65,8 +75,6 @@ public class ProfileVideosFragment extends Fragment implements OnClickFullExhibi
                     if (videos != null) {
 
                         for (Video video : videos) {
-                           /* System.out.println(video);
-                            profileVideo.add(new Videos(video.getImage()));*/
                             profileVideo.add(new Videos(video.getImage(),
                                     video.getVideoFiles().get(0).getLink()));
                         }
