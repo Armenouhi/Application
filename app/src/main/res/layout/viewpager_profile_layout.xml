@@ -66,15 +66,26 @@
             app:layout_constraintStart_toEndOf="@id/posts"
             app:layout_constraintTop_toTopOf="@id/posts" />
 
+
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/sRLFullName"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/thirty"
+        android:layout_marginTop="@dimen/fifteen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/swipeRefreshL"
+        >
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/full_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/thirty"
             android:text="@string/full_name"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/swipeRefreshL"
-            app:layout_constraintTop_toBottomOf="@id/swipeRefreshL" />
+            />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/profile_tabLayout"
@@ -82,7 +93,7 @@
         android:layout_height="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/full_name"
+        app:layout_constraintTop_toBottomOf="@id/sRLFullName"
         />
 
     <androidx.viewpager2.widget.ViewPager2

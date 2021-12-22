@@ -60,26 +60,25 @@ public class HomePageAdapter extends RecyclerView.Adapter<HomePageHolder> {
         Image images = homeImages.get(position);
         holder.initData(images);
 
-        AppCompatImageView openButton = holder.itemView.findViewById(R.id.logo);
         AppCompatImageView commentButton = holder.itemView.findViewById(R.id.imageMessage);
         AppCompatImageView buttonShare = holder.itemView.findViewById(R.id.shareIcon);
 
+        String fullName = images.getFullName();
+
         holder.image.setOnClickListener(view -> {
-            openPageListener.openPage(openButton);
+            openPageListener.changeName(fullName);
         });
 
         holder.title.setOnClickListener(view -> {
-            openPageListener.openPage(openButton);
+            openPageListener.changeName(fullName);
         });
 
         holder.comment.setOnClickListener(view -> {
             clickCommentListener.addComment(commentButton);
-            System.out.println("mi ban");
         });
 
         holder.shareI.setOnClickListener(v -> {
             shareListener.share(buttonShare);
-            System.out.println("share");
         });
 
     }

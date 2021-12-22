@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager2.widget.ViewPager2;
@@ -20,7 +21,9 @@ public class ProfileFragment extends Fragment {
 
     TabLayout tabLayout;
     ViewPager2 viewPager2;
-    SwipeRefreshLayout refreshLayout;
+
+    SwipeRefreshLayout refreshLayout, sRLFullName;
+    AppCompatTextView fullName;
 
     @Nullable
     @Override
@@ -32,6 +35,8 @@ public class ProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.viewpager_profile_layout, container, false);
 
         refreshLayout = view.findViewById(R.id.swipeRefreshL);
+        sRLFullName = view.findViewById(R.id.sRLFullName);
+        fullName = view.findViewById(R.id.full_name);
 
         tabLayout = view.findViewById(R.id.profile_tabLayout);
         tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_baseline_image_24));
@@ -65,6 +70,22 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+        sRLFullName.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refreshLayout.setRefreshing(false);
+            }
+        });
+
+        getFullName();
         return view;
+    }
+
+    private void getFullName() {
+        Bundle bundle = getArguments();
+        System.out.println("bundle " + bundle);
+        if (bundle != null) {
+            fullName.setText(bundle.getString("full_name"));
+        }
     }
 }

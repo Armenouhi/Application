@@ -9,7 +9,9 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatImageView;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -172,7 +174,6 @@ public class HomePageFragment extends Fragment
         adapter.setClickCommentListener(this);
         adapter.setOnClickShare(this);
 
-//        adapter.setImages(Image.getImages());
         recyclerView.setAdapter(adapter);
     }
 
@@ -181,8 +182,12 @@ public class HomePageFragment extends Fragment
     }
 
     @Override
-    public void openPage(AppCompatImageView page) {
+    public void changeName(String fullName) {
         ProfileFragment profileFragment = new ProfileFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("full_name", fullName);
+        System.out.println("full_name " + fullName);
+        profileFragment.setArguments(bundle);
         FragmentManager fragmentManager = getParentFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragmentHomePage, profileFragment);
