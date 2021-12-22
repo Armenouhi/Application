@@ -60,49 +60,79 @@ public class HomePageFragment extends Fragment
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        boolean isInternetConnected = false;
         super.onViewCreated(view, savedInstanceState);
 
         Images images = Images.create();
         Call<SearchPhotos> nature = images.searchImage("nature");
 
-        nature.enqueue(new Callback<SearchPhotos>() {
-            @Override
-            public void onResponse(Call<SearchPhotos> call, Response<SearchPhotos> response) {
-                SearchPhotos body = response.body();
-                if (body != null) {
-                    List<Photo> photos = body.getPhotos();
+        if (isInternetConnected) {
+            nature.enqueue(new Callback<SearchPhotos>() {
+                @Override
+                public void onResponse(Call<SearchPhotos> call, Response<SearchPhotos> response) {
+                    SearchPhotos body = response.body();
+                    if (body != null) {
+                        List<Photo> photos = body.getPhotos();
 
-                    ArrayList<Image> profilePhoto = new ArrayList<>();
+                        ArrayList<Image> profilePhoto = new ArrayList<>();
 
-                    for (Photo photo : photos) {
+                        for (Photo photo : photos) {
 
-                        String[] s = photo.getPhotographer().split(" ");
-                        String s1 = "";
-                        String s2 = "";
+                            String[] s = photo.getPhotographer().split(" ");
+                            String s1 = "";
+                            String s2 = "";
 
-                        if (s.length - 1 > 0) {
-                            s1 = s[0];
+                            if (s.length - 1 > 0) {
+                                s1 = s[0];
+                            }
+                            if (s.length - 1 > 1) {
+                                s2 = s[1];
+                            }
+
+                            profilePhoto.add(new Image(
+                                    R.drawable.photographer,
+                                    s1, s2,
+                                    photo.getSrc().getLargeUrl(), 0));
                         }
-                        if (s.length - 1 > 1) {
-                            s2 = s[1];
-                        }
-
-                        profilePhoto.add(new Image(
-                                R.drawable.photographer,
-                                s1, s2,
-                                photo.getSrc().getLargeUrl(), 0));
+                        adapter.setImages(profilePhoto);
+                        saveToDB(profilePhoto);
                     }
-                    adapter.setImages(profilePhoto);
-                    saveToDB(profilePhoto);
                 }
-            }
 
 
-            @Override
-            public void onFailure(Call<SearchPhotos> call, Throwable t) {
-                System.out.println(t.getLocalizedMessage());
+                @Override
+                public void onFailure(Call<SearchPhotos> call, Throwable t) {
+                    System.out.println(t.getLocalizedMessage());
+                }
+            });
+        } else {
+            AppDatabase db = AppDatabase.getInstance(getContext());
+            AuthorDao authorsDao = db.getAuthorsDao();
+
+            List<AuthorsWithImage> authorsWithImages = authorsDao.getAuthors();
+
+            ArrayList<AuthorsWithImage> dbPhoto = new ArrayList<>();
+
+            for (AuthorsWithImage photo : authorsWithImages) {
+
+                String[] s = photo.getFirstname().split(" ");
+                String s1 = "";
+
+                if (s.length - 1 > 0) {
+                    s1 = s[0];
+                }
+
+                dbPhoto.add(new AuthorsWithImage(
+                    photo.getId(),
+                        photo.getFirstname(),
+                        photo.getUrl()
+                ));
             }
-        });
+
+            adapter.setImages(dbPhoto);
+        }
+
+
     }
 
 
