@@ -117,13 +117,6 @@ public class HomePageFragment extends Fragment
 
             /*for (AuthorsWithImage photo : authorsWithImages) {
 
-                String[] s = photo.getFirstname().split(" ");
-                String s1 = "";
-
-                if (s.length - 1 > 0) {
-                    s1 = s[0];
-                }
-
                 dbPhoto.add(new AuthorsWithImage(
                     photo.getId(),
                         photo.getFirstname(),
