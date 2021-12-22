@@ -20,11 +20,18 @@ public class ProfileFragment extends Fragment {
 
     TabLayout tabLayout;
     ViewPager2 viewPager2;
+    SwipeRefreshLayout refreshLayout;
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(
+            @NonNull LayoutInflater inflater,
+            @Nullable ViewGroup container,
+            @Nullable Bundle savedInstanceState
+    ) {
         View view = inflater.inflate(R.layout.viewpager_profile_layout, container, false);
+
+        refreshLayout = view.findViewById(R.id.swipeRefreshL);
 
         tabLayout = view.findViewById(R.id.profile_tabLayout);
         tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_baseline_image_24));
@@ -48,6 +55,13 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
 
+            }
+        });
+
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refreshLayout.setRefreshing(false);
             }
         });
 
