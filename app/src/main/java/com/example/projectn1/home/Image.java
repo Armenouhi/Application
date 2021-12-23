@@ -18,6 +18,11 @@ public class Image {
         this.user = user; fullName = s1 + s2; imageUrl = largeUrl; this.i = i;
     }
 
+    public Image(int photographer, String s, String largeUrl, int i) {
+        user = photographer; fullName = s;
+        imageUrl = largeUrl; this.i = i;
+    }
+
     public String getFullName() {
         return fullName;
     }

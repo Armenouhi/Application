@@ -1,7 +1,10 @@
 package com.example.projectn1.home;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -82,62 +85,71 @@ public class HomePageFragment extends Fragment
         Images images = Images.create();
         Call<SearchPhotos> nature = images.searchImage("nature");
 
-        if (isInternetConnected) {
-            nature.enqueue(new Callback<SearchPhotos>() {
-                @Override
-                public void onResponse(Call<SearchPhotos> call, Response<SearchPhotos> response) {
-                    SearchPhotos body = response.body();
-                    if (body != null) {
-                        List<Photo> photos = body.getPhotos();
+        if (getActivity() != null) {
+            ConnectivityManager connectivityManager =
+                    (ConnectivityManager)getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+            if(connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE)
+                    .getState() == NetworkInfo.State.CONNECTED ||
+                    connectivityManager
+                            .getNetworkInfo(ConnectivityManager.TYPE_WIFI)
+                            .getState() == NetworkInfo.State.CONNECTED) {
 
-                        ArrayList<Image> profilePhoto = new ArrayList<>();
+                isInternetConnected = true;
 
-                        for (Photo photo : photos) {
+                nature.enqueue(new Callback<SearchPhotos>() {
+                    @Override
+                    public void onResponse(Call<SearchPhotos> call, Response<SearchPhotos> response) {
+                        SearchPhotos body = response.body();
+                        if (body != null) {
+                            List<Photo> photos = body.getPhotos();
 
-                            String[] s = photo.getPhotographer().split(" ");
-                            String s1 = "";
-                            String s2 = "";
+                            ArrayList<Image> profilePhoto = new ArrayList<>();
 
-                            if (s.length - 1 > 0) {
-                                s1 = s[0];
+                            for (Photo photo : photos) {
+
+                                String s = photo.getPhotographer();
+
+                                profilePhoto.add(new Image(
+                                        R.drawable.photographer,
+                                        s,
+                                        photo.getSrc().getLargeUrl(), 0));
                             }
-                            if (s.length - 1 > 1) {
-                                s2 = s[1];
-                            }
-
-                            profilePhoto.add(new Image(
-                                    R.drawable.photographer,
-                                    s1, s2,
-                                    photo.getSrc().getLargeUrl(), 0));
+                            adapter.setImages(profilePhoto);
+                            saveToDB(profilePhoto);
                         }
-                        adapter.setImages(profilePhoto);
-                        saveToDB(profilePhoto);
                     }
-                }
 
-                @Override
-                public void onFailure(Call<SearchPhotos> call, Throwable t) {
-                    System.out.println(t.getLocalizedMessage());
-                }
-            });
-        } else {
-            AppDatabase db = AppDatabase.getInstance(getContext());
-            AuthorDao authorsDao = db.getAuthorsDao();
+                    @Override
+                    public void onFailure(Call<SearchPhotos> call, Throwable t) {
+                        System.out.println(t.getLocalizedMessage());
+                    }
+                });
 
-            List<AuthorsWithImage> authorsWithImages = authorsDao.getAuthors();
 
-            ArrayList<Image> dbPhoto = new ArrayList<>();
 
-            for (AuthorsWithImage photo : authorsWithImages ) {
-                dbPhoto.add(new Image(
-                        photo.getUrl(),
-                        photo.getFirstname()
-                ));
             }
-            adapter.setImages(dbPhoto);
+            else {
 
-            isInternetConnected = true;
+                AppDatabase db = AppDatabase.getInstance(getContext());
+                AuthorDao authorsDao = db.getAuthorsDao();
+
+                List<AuthorsWithImage> authorsWithImages = authorsDao.getAuthors();
+
+                ArrayList<Image> dbPhoto = new ArrayList<>();
+
+                for (AuthorsWithImage photo : authorsWithImages ) {
+                    dbPhoto.add(new Image(
+                            photo.getUrl(),
+                            photo.getFirstname()
+                    ));
+                }
+                adapter.setImages(dbPhoto);
+
+                isInternetConnected = false;
+            }
         }
+
+
     }
 
 
