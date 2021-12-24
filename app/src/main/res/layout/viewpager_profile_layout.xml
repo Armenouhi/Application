@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -67,25 +68,17 @@
             app:layout_constraintTop_toTopOf="@id/posts" />
 
 
-
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/sRLFullName"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/thirty"
-        android:layout_marginTop="@dimen/fifteen"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/swipeRefreshL"
-        >
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/full_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/thirty"
             android:text="@string/full_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/swipeRefreshL"
             />
 
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/profile_tabLayout"
@@ -93,8 +86,8 @@
         android:layout_height="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sRLFullName"
-        />
+        app:layout_constraintTop_toBottomOf="@id/full_name"
+        tools:ignore="UnknownId" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/profile_viewPager"
@@ -104,5 +97,17 @@
         app:layout_constraintTop_toBottomOf="@id/profile_tabLayout"
         app:layout_constraintEnd_toEndOf="parent"
         />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/empty_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/no_data_available"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

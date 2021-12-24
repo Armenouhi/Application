@@ -12,9 +12,8 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatEditText;
+
 import androidx.appcompat.widget.AppCompatImageView;
-import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -124,8 +123,6 @@ public class HomePageFragment extends Fragment
                         System.out.println(t.getLocalizedMessage());
                     }
                 });
-
-
 
             }
             else {
