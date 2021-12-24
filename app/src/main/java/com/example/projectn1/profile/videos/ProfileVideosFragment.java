@@ -1,5 +1,8 @@
 package com.example.projectn1.profile.videos;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,6 +11,8 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageView;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -32,6 +37,9 @@ public class ProfileVideosFragment extends Fragment implements OnClickFullExhibi
     View view;
     ProfileVideoAdapter adapter = new ProfileVideoAdapter();
     SwipeRefreshLayout swipeRL;
+    public RecyclerView recyclerView;
+    AppCompatTextView oops, noPosts;
+    AppCompatImageView noFile;
 
     @Nullable
     @Override
@@ -42,7 +50,17 @@ public class ProfileVideosFragment extends Fragment implements OnClickFullExhibi
     ) {
         view = inflater.inflate(R.layout.profile_layout, container, false);
         swipeRL = view.findViewById(R.id.swipeRefresh);
+
+        oops = view.findViewById(R.id.oops);
+        noPosts = view.findViewById(R.id.no_posts);
+        noFile = view.findViewById(R.id.no_file);
+
+        recyclerView = view.findViewById(R.id.recViewProfile);
+
+
         videosProfilePage();
+        checkInternet();
+
         swipeRL.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -96,7 +114,6 @@ public class ProfileVideosFragment extends Fragment implements OnClickFullExhibi
     }
 
     private void videosProfilePage() {
-        RecyclerView recyclerView = view.findViewById(R.id.recViewProfile);
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(
                 getContext(),
@@ -125,5 +142,31 @@ public class ProfileVideosFragment extends Fragment implements OnClickFullExhibi
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
 
+    }
+
+
+    private void checkInternet() {
+        if (getActivity() != null) {
+            ConnectivityManager connectivityManager =
+                    (ConnectivityManager)getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+            if (connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE)
+                    .getState() == NetworkInfo.State.CONNECTED ||
+                    connectivityManager
+                            .getNetworkInfo(ConnectivityManager.TYPE_WIFI)
+                            .getState() == NetworkInfo.State.CONNECTED) {
+
+                oops.setVisibility(View.GONE);
+                noPosts.setVisibility(View.GONE);
+                noFile.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.VISIBLE);
+
+            } else {
+
+                oops.setVisibility(View.VISIBLE);
+                noPosts.setVisibility(View.VISIBLE);
+                noFile.setVisibility(View.VISIBLE);
+                recyclerView.setVisibility(View.GONE);
+            }
+        }
     }
 }

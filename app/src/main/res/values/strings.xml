@@ -17,4 +17,6 @@
     <string name="comment">Comment N1</string>
     <string name="write_comment">Write Comment</string>
     <string name="no_data_available">Please connect to the internet</string>
+    <string name="no_posts">There is No Posts</string>
+    <string name="oops">Oops...</string>
 </resources>

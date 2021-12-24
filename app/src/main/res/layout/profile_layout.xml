@@ -7,14 +7,17 @@
     android:layout_height="wrap_content"
     android:padding="@dimen/two">
 
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefresh"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recViewProfile"
@@ -23,6 +26,44 @@
             tools:ignore="NotSibling" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/oops"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/oops"
+        android:visibility="gone"
+        android:textSize="@dimen/text_size_30"
+        android:layout_marginTop="@dimen/one_hundred"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/no_posts"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/no_posts"
+        android:visibility="gone"
+        android:textSize="@dimen/text_size_30"
+        android:layout_marginTop="@dimen/thirty"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/oops"/>
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/no_file"
+        android:layout_width="90dp"
+        android:layout_height="100dp"
+        tools:layout_editor_absoluteY="2dp"
+        android:src="@drawable/ic_hide_image"
+        android:layout_marginTop="@dimen/twenty"
+        app:layout_constraintTop_toBottomOf="@id/no_posts"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
 
 

@@ -10,8 +10,8 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
-import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -28,7 +28,7 @@ public class ProfileFragment extends Fragment {
     ViewPager2 viewPager2;
 
     SwipeRefreshLayout refreshLayout;
-    AppCompatTextView fullName, emptyDataView, posts, followers;
+    AppCompatTextView fullName, posts, followers;
     CardView cardView;
 
     @Nullable
@@ -42,7 +42,6 @@ public class ProfileFragment extends Fragment {
 
         refreshLayout = view.findViewById(R.id.swipeRefreshL);
         fullName = view.findViewById(R.id.full_name);
-        emptyDataView = view.findViewById(R.id.empty_view);
         posts = view.findViewById(R.id.posts);
         followers = view.findViewById(R.id.followers);
         cardView = view.findViewById(R.id.roundProfileImg);
@@ -101,21 +100,12 @@ public class ProfileFragment extends Fragment {
                     connectivityManager
                             .getNetworkInfo(ConnectivityManager.TYPE_WIFI)
                             .getState() == NetworkInfo.State.CONNECTED) {
-
-                emptyDataView.setVisibility(View.GONE);
-
-                viewPager2.setVisibility(View.VISIBLE);
-                tabLayout.setVisibility(View.VISIBLE);
                 posts.setVisibility(View.VISIBLE);
                 followers.setVisibility(View.VISIBLE);
                 fullName.setVisibility(View.VISIBLE);
                 cardView.setVisibility(View.VISIBLE);
 
             } else {
-                emptyDataView.setVisibility(View.VISIBLE);
-                
-                viewPager2.setVisibility(View.GONE);
-                tabLayout.setVisibility(View.GONE);
                 posts.setVisibility(View.GONE);
                 followers.setVisibility(View.GONE);
                 fullName.setVisibility(View.GONE);
@@ -123,6 +113,5 @@ public class ProfileFragment extends Fragment {
 
             }
         }
-
     }
 }
