@@ -19,10 +19,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         homePage();
-
-       /* AppDatabase db = AppDatabase.getInstance(this);
-        AuthorDao authorsDao = db.getAuthorsDao();
-        List<Authors> authorsList = authorsDao.getAuthors();*/
     }
 
     private void homePage() {
@@ -30,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
 
         FragmentTransaction fT = getSupportFragmentManager().beginTransaction();
         fT.replace(R.id.fragmentHomePage, fH);
-        fT.addToBackStack(null);
         fT.commit();
     }
 }

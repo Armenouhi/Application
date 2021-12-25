@@ -4,8 +4,10 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.projectn1.R;
+import com.example.projectn1.home.comments.OnSaveData;
 
 public class DialogBottomCommentsActivity extends AppCompatActivity {
     @Override
@@ -14,6 +16,7 @@ public class DialogBottomCommentsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         initDialogFragment();
+//        showComments();
     }
 
 
