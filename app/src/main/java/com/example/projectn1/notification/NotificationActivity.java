@@ -18,6 +18,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.core.app.NotificationCompat;
 
 import com.example.projectn1.R;
 
@@ -25,7 +26,6 @@ public class NotificationActivity extends AppCompatActivity {
     NotificationManager nM;
     NotificationChannel nCh;
     Notification.Builder builder;
-    PendingIntent pendingIntent;
     private String channelId = "i.apps.notifications";
     private String description = "Test notification";
 
@@ -43,10 +43,15 @@ public class NotificationActivity extends AppCompatActivity {
         nM = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
         sendN.setOnClickListener(v -> {
-            Intent intent = new Intent(this, AfterNotification.class);
+           /* Intent intent = new Intent(this, AfterNotification.class);
             pendingIntent = PendingIntent.getActivity(
                     this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-                    contentView[0] = new RemoteViews(getPackageName(), R.layout.afeter_notification_layout);
+                    contentView[0] = new RemoteViews(getPackageName(), R.layout.afeter_notification_layout);*/
+
+            Intent intent = new Intent(this, AfterNotification.class);
+
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
 
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
