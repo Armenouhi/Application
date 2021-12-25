@@ -57,14 +57,23 @@ public class NotificationActivity extends AppCompatActivity {
 
                 builder = new Notification.Builder(this, channelId)
                         .setCustomContentView(contentView[0])
-                        .setSmallIcon(R.drawable.ic_alternate_email)
+                        .setSmallIcon(R.drawable.gmail)
                         .setLargeIcon(BitmapFactory.decodeResource(this.getResources(), R.drawable.ic_email_read))
+                        .setContentTitle("Comments")
+                        .setContentText("Comment 1")
+                        .setStyle(new Notification.Style() {
+                            @Override
+                            protected void internalSetBigContentTitle(CharSequence title) {
+                                super.internalSetBigContentTitle(title);
+                            }
+                        })
                         .setContentIntent(pendingIntent);
+
 
             } else {
                builder = new Notification.Builder(this)
                        .setCustomContentView(contentView[0])
-                       .setSmallIcon(R.drawable.ic_alternate_email)
+                       .setSmallIcon(R.drawable.gmail)
                        .setLargeIcon(BitmapFactory.decodeResource(this.getResources(), R.drawable.ic_email_read))
                        .setContentIntent(pendingIntent);
             }
