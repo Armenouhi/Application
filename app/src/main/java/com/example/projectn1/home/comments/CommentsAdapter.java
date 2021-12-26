@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CommentsAdapter extends RecyclerView.Adapter<CommentsHolder> {
-    ArrayList<Comment> commentsList = new ArrayList<>();
+    ArrayList<String> commentsList = new ArrayList<>();
     private OnSaveData saveData;
 
     public void setComments(OnSaveData saveData) {
@@ -33,7 +33,7 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull CommentsHolder holder, int position) {
-        Comment comment = commentsList.get(position);
+        String comment = commentsList.get(position);
         holder.initData(comment);
     }
 
@@ -42,7 +42,7 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsHolder> {
         return commentsList.size();
     }
 
-    public void setCommentskist(List<Comment> comments) {
+    public void setCommentskist(List<String> comments) {
         this.commentsList.clear();
         this.commentsList.addAll(comments);
         notifyDataSetChanged();
@@ -57,7 +57,7 @@ class CommentsHolder extends RecyclerView.ViewHolder {
         super(itemView);
     }
 
-    public void initData(Comment comments) {
-        comment.setText(comments.getComment());
+    public void initData(String comments) {
+        comment.setText(comments);
     }
 }

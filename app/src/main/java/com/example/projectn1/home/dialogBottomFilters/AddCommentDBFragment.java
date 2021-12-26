@@ -46,8 +46,6 @@ public class AddCommentDBFragment extends BottomSheetDialogFragment implements O
     NotificationManager nM;
     NotificationChannel nCh;
     Notification.Builder builder;
-    private final String channelId = "i.apps.notifications";
-    private final String description = "Test notification";
 
 
     public static AddCommentDBFragment newInstance() {
@@ -139,7 +137,7 @@ public class AddCommentDBFragment extends BottomSheetDialogFragment implements O
         recyclerView.setLayoutManager(gridLayoutManager);
 
         adapterComment.setComments(this);
-        adapterComment.setCommentskist(Comment.getComments());
+        adapterComment.setCommentskist(commentList);
         recyclerView.setAdapter(adapterComment);
     }
 
@@ -155,7 +153,6 @@ public class AddCommentDBFragment extends BottomSheetDialogFragment implements O
             nM = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
         }
 
-//        saveComment.setOnClickListener(v -> {
             System.out.println("Save data");
 
             Intent intent = new Intent(getContext(), DialogBottomCommentsActivity.class);
@@ -166,6 +163,8 @@ public class AddCommentDBFragment extends BottomSheetDialogFragment implements O
 
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                String channelId = "i.apps.notifications";
+                String description = "Test notification";
                 nCh = new NotificationChannel(channelId, description, NotificationManager.IMPORTANCE_HIGH);
                 nCh.enableLights(true);
                 nCh.enableVibration(false);
@@ -188,6 +187,5 @@ public class AddCommentDBFragment extends BottomSheetDialogFragment implements O
                         .setContentIntent(pendingIntent);
             }
             nM.notify(128, builder.build());
-//        });
     }
 }
