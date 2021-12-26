@@ -117,12 +117,14 @@ public class AddCommentDBFragment extends BottomSheetDialogFragment {
 
             if (commentList == null) {
                 commentList = new ArrayList<>();
+                commentText.setPressed(true);
+                commentText.requestFocus();
             }
 
                 System.out.println(commentList);
             }
-        } catch (IllegalArgumentException e) {
-            Selection.setSelection((Editable) commentText.getText(),commentText.getSelectionStart());
+        } catch (Exception e) {
+            commentText.setPressed(true);
             commentText.requestFocus();
         }
 
@@ -173,7 +175,7 @@ public class AddCommentDBFragment extends BottomSheetDialogFragment {
                         .setSmallIcon(R.drawable.comment)
                         .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_email_read))
                         .setContentTitle("Comments")
-                        .setContentText("Comment 1")
+                        .setContentText((commentText.getText() != null) ? commentText.getText().toString() : "")
                         .setStyle(new Notification.BigTextStyle())
                         .setStyle(new Notification.BigPictureStyle())
                         .setColor(Color.blue(R.color.blue_100))
