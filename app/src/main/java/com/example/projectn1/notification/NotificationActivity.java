@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import com.example.projectn1.R;
+import com.example.projectn1.home.dialogBottomFilters.DialogBottomCommentsActivity;
 
 public class NotificationActivity extends AppCompatActivity {
     NotificationManager nM;
@@ -33,16 +34,16 @@ public class NotificationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.notification_layout);
+        setContentView(R.layout.dialog_bottom_comment);
         final RemoteViews[] contentView = new RemoteViews[1];
 
-        sendN = findViewById(R.id.send_notification);
+        sendN = findViewById(R.id.saveComment);
 
         nM = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
         sendN.setOnClickListener(v -> {
 
-            Intent intent = new Intent(this, AfterNotification.class);
+            Intent intent = new Intent(this, DialogBottomCommentsActivity.class);
 
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);

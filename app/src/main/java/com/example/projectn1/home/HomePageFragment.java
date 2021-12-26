@@ -39,7 +39,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class HomePageFragment extends Fragment
-        implements OnLikeListener, OnOpenPageListener, OnClickCommentListener, OnClickShare {
+        implements OnLikeListener, OnOpenPageListener, addCommentListener, OnClickShare {
 
 
     HomePageAdapter adapter = new HomePageAdapter();

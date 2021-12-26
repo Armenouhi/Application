@@ -1,7 +1,5 @@
 package com.example.projectn1.home;
 
-import android.content.Context;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,12 +7,10 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.projectn1.R;
-import com.example.projectn1.home.dialogBottomFilters.AddCommentDBFragment;
 import com.example.projectn1.home.dialogBottomFilters.DialogBottomCommentsActivity;
 
 import java.util.ArrayList;
@@ -24,7 +20,7 @@ public class HomePageAdapter extends RecyclerView.Adapter<HomePageHolder> {
     ArrayList<Image> homeImages = new ArrayList<>();
     private OnLikeListener onLike;
     private OnOpenPageListener openPageListener;
-    private OnClickCommentListener clickCommentListener;
+    private addCommentListener clickCommentListener;
     private OnClickShare shareListener;
     DialogBottomCommentsActivity commentsActivity;
 
@@ -36,7 +32,7 @@ public class HomePageAdapter extends RecyclerView.Adapter<HomePageHolder> {
         this.openPageListener = openPageListener;
     }
 
-    public void setClickCommentListener (OnClickCommentListener clickCommentListener) {
+    public void setClickCommentListener (addCommentListener clickCommentListener) {
         this.clickCommentListener = clickCommentListener;
     }
 
