@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.Group;
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager2.widget.ViewPager2;
@@ -30,6 +31,7 @@ public class ProfileFragment extends Fragment {
     SwipeRefreshLayout refreshLayout;
     AppCompatTextView fullName, posts, followers;
     CardView cardView;
+    Group groupViews;
 
     @Nullable
     @Override
@@ -40,11 +42,11 @@ public class ProfileFragment extends Fragment {
     ) {
         View view = inflater.inflate(R.layout.viewpager_profile_layout, container, false);
 
-        refreshLayout = view.findViewById(R.id.swipeRefreshL);
         fullName = view.findViewById(R.id.full_name);
         posts = view.findViewById(R.id.posts);
         followers = view.findViewById(R.id.followers);
         cardView = view.findViewById(R.id.roundProfileImg);
+        groupViews = view.findViewById(R.id.group_views);
 
         tabLayout = view.findViewById(R.id.profile_tabLayout);
         tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_baseline_image_24));
@@ -71,12 +73,6 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                refreshLayout.setRefreshing(false);
-            }
-        });
 
         getFullName();
         checkInternet();
@@ -100,17 +96,10 @@ public class ProfileFragment extends Fragment {
                     connectivityManager
                             .getNetworkInfo(ConnectivityManager.TYPE_WIFI)
                             .getState() == NetworkInfo.State.CONNECTED) {
-                posts.setVisibility(View.VISIBLE);
-                followers.setVisibility(View.VISIBLE);
-                fullName.setVisibility(View.VISIBLE);
-                cardView.setVisibility(View.VISIBLE);
+               groupViews.setVisibility(View.VISIBLE);
 
             } else {
-                posts.setVisibility(View.GONE);
-                followers.setVisibility(View.GONE);
-                fullName.setVisibility(View.GONE);
-                cardView.setVisibility(View.GONE);
-
+                groupViews.setVisibility(View.GONE);
             }
         }
     }

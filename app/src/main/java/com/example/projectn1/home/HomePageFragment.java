@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,6 +46,7 @@ public class HomePageFragment extends Fragment
     HomePageAdapter adapter = new HomePageAdapter();
     View view;
     SwipeRefreshLayout sR;
+    ArrayList<String> imagesUrl;
 
     boolean isInternetConnected = false;
 
@@ -72,6 +74,8 @@ public class HomePageFragment extends Fragment
                 listImages();
             }
         });
+
+        imagesUrl = new ArrayList<>();
 
         return view;
     }
@@ -112,6 +116,9 @@ public class HomePageFragment extends Fragment
                                         R.drawable.photographer,
                                         s,
                                         photo.getSrc().getLargeUrl(), 0));
+
+                                imagesUrl.add(photo.getSrc().getLargeUrl());
+
                             }
                             adapter.setImages(profilePhoto);
                             saveToDB(profilePhoto);
@@ -216,14 +223,17 @@ public class HomePageFragment extends Fragment
     @SuppressLint("QueryPermissionsNeeded")
     @Override
     public void share(AppCompatImageView buttonShare) {
-        System.out.println("Comment");
 
-        Intent sendIntent = new Intent(Intent.ACTION_SEND);
-        sendIntent.putExtra(
-                Intent.EXTRA_TEXT,
-                "Send a simple tex"
-        );
-        sendIntent.setType("text/plain");
-        startActivity(sendIntent);
+        ArrayList<Uri> imageUris = new ArrayList<Uri>();
+        for (String url : imagesUrl) {
+            imageUris.add(Uri.parse(url));
+        }
+
+        Intent shareIntent = new Intent();
+        shareIntent.setAction(Intent.ACTION_SEND_MULTIPLE);
+        shareIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, imageUris);
+        shareIntent.setType("image/*");
+        startActivity(Intent.createChooser(shareIntent, null));
+
     }
 }
