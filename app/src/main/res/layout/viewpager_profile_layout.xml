@@ -14,7 +14,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Group
-        android:id="@+id/group_views"
+        android:id="@+id/group_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:constraint_referenced_ids="roundProfileImg, posts, followers, full_name" />
