@@ -5,23 +5,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.projectn1.R;
-import com.example.projectn1.profile.images.Images;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CommentsAdapter extends RecyclerView.Adapter<CommentsHolder> {
     ArrayList<String> commentsList = new ArrayList<>();
-    private OnSaveData saveData;
-
-    public void setComments(OnSaveData saveData) {
-        this.saveData = saveData;
-    };
 
     @NonNull
     @Override

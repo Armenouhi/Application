@@ -12,6 +12,8 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.Selection;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,9 +27,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.projectn1.R;
-import com.example.projectn1.home.comments.Comment;
 import com.example.projectn1.home.comments.CommentsAdapter;
-import com.example.projectn1.home.comments.OnSaveData;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -36,7 +36,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class AddCommentDBFragment extends BottomSheetDialogFragment implements OnSaveData {
+public class AddCommentDBFragment extends BottomSheetDialogFragment {
     CommentsAdapter adapterComment = new CommentsAdapter();
     View view;
     AppCompatButton saveComment;
@@ -106,19 +106,24 @@ public class AddCommentDBFragment extends BottomSheetDialogFragment implements O
     }
 
     public void loadComments() {
-        if (getActivity() != null) {
-            SharedPreferences sharedPreferences =
-                    getActivity().getSharedPreferences("Shared Preferences", Context.MODE_PRIVATE);
-            Gson gson = new Gson();
-            String json = sharedPreferences.getString("Comments", null);
-            Type type = new TypeToken<ArrayList<String>>() {}.getType();
-            commentList = gson.fromJson(json, type);
+        try {
+            if (getActivity() != null) {
+                SharedPreferences sharedPreferences =
+                        getActivity().getSharedPreferences("Shared Preferences", Context.MODE_PRIVATE);
+                Gson gson = new Gson();
+                String json = sharedPreferences.getString("Comments", null);
+                Type type = new TypeToken<ArrayList<String>>() {}.getType();
+                commentList = gson.fromJson(json, type);
 
             if (commentList == null) {
                 commentList = new ArrayList<>();
             }
 
-            System.out.println(commentList);
+                System.out.println(commentList);
+            }
+        } catch (IllegalArgumentException e) {
+            Selection.setSelection((Editable) commentText.getText(),commentText.getSelectionStart());
+            commentText.requestFocus();
         }
 
     }
@@ -136,14 +141,8 @@ public class AddCommentDBFragment extends BottomSheetDialogFragment implements O
 
         recyclerView.setLayoutManager(gridLayoutManager);
 
-        adapterComment.setComments(this);
         adapterComment.setCommentskist(commentList);
         recyclerView.setAdapter(adapterComment);
-    }
-
-    @Override
-    public void onSave(AppCompatButton save) {
-
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
