@@ -96,7 +96,6 @@ public class ProfileFragment extends Fragment {
                     connectivityManager
                             .getNetworkInfo(ConnectivityManager.TYPE_WIFI)
                             .getState() == NetworkInfo.State.CONNECTED) {
-
                groupViews.setVisibility(View.VISIBLE);
             } else {
                 groupViews.setVisibility(View.GONE);
