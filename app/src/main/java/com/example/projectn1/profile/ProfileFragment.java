@@ -1,5 +1,6 @@
 package com.example.projectn1.profile;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -87,6 +88,7 @@ public class ProfileFragment extends Fragment {
         }
     }
 
+    @SuppressLint("MissingPermission")
     private void checkInternet() {
         if (getActivity() != null) {
             ConnectivityManager connectivityManager =
@@ -96,7 +98,7 @@ public class ProfileFragment extends Fragment {
                     connectivityManager
                             .getNetworkInfo(ConnectivityManager.TYPE_WIFI)
                             .getState() == NetworkInfo.State.CONNECTED) {
-               groupViews.setVisibility(View.VISIBLE);
+                groupViews.setVisibility(View.VISIBLE);
             } else {
                 groupViews.setVisibility(View.GONE);
             }

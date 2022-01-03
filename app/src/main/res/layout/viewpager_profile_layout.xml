@@ -31,53 +31,53 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar_profile_page"
-       >
+        >
 
         <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imageProfile"
-                android:layout_width="@dimen/one_hundred"
-                android:layout_height="@dimen/one_hundred"
-                android:layout_centerHorizontal="true"
-                android:src="@drawable/user"
-                />
+            android:id="@+id/imageProfile"
+            android:layout_width="@dimen/one_hundred"
+            android:layout_height="@dimen/one_hundred"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/user"
+            />
 
     </androidx.cardview.widget.CardView>
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/posts"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="88dp"
-            android:text="@string/posts"
-            app:layout_constraintBottom_toBottomOf="@id/roundProfileImg"
-            app:layout_constraintEnd_toStartOf="@id/followers"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@id/roundProfileImg"
-            app:layout_constraintTop_toTopOf="@id/roundProfileImg"
-            app:layout_constraintVertical_bias="0.47" />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/posts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="88dp"
+        android:text="@string/posts"
+        app:layout_constraintBottom_toBottomOf="@id/roundProfileImg"
+        app:layout_constraintEnd_toStartOf="@id/followers"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@id/roundProfileImg"
+        app:layout_constraintTop_toTopOf="@id/roundProfileImg"
+        app:layout_constraintVertical_bias="0.47" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/followers"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/followers"
-            app:layout_constraintBottom_toBottomOf="@id/posts"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@id/posts"
-            app:layout_constraintTop_toTopOf="@id/posts" />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/followers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/followers"
+        app:layout_constraintBottom_toBottomOf="@id/posts"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@id/posts"
+        app:layout_constraintTop_toTopOf="@id/posts" />
 
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/full_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/thirty"
-            android:text="@string/full_name"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/roundProfileImg"
-            />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/full_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/thirty"
+        android:text="@string/full_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/roundProfileImg"
+        />
 
 
     <com.google.android.material.tabs.TabLayout

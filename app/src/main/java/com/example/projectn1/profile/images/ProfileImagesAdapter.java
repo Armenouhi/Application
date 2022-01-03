@@ -72,4 +72,3 @@ class ProfileHolder extends RecyclerView.ViewHolder {
     }
 
 }
-

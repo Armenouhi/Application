@@ -32,7 +32,10 @@ import com.example.projectn1.room.AppDatabase;
 import com.example.projectn1.room.AuthorDao;
 import com.example.projectn1.room.AuthorsWithImage;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 import retrofit2.Call;
@@ -132,6 +135,7 @@ public class HomePageFragment extends Fragment
                 });
 
             }
+
             else {
 
                 AppDatabase db = AppDatabase.getInstance(getContext());
@@ -151,7 +155,10 @@ public class HomePageFragment extends Fragment
 
                 isInternetConnected = false;
             }
+
         }
+
+
 
 
     }
@@ -164,12 +171,12 @@ public class HomePageFragment extends Fragment
         List<AuthorsWithImage> entityAuthors = new ArrayList<>();
         for (Image dto: profilePhoto) {
             entityAuthors.add(new AuthorsWithImage(
-                0,
+                    0,
                     dto.getImageUrl(),
                     dto.getFullName()
             ));
         }
-        
+
         authorsDao.insertAll(entityAuthors);
     }
 
@@ -224,16 +231,37 @@ public class HomePageFragment extends Fragment
     @Override
     public void share(AppCompatImageView buttonShare) {
 
-        ArrayList<Uri> imageUris = new ArrayList<Uri>();
-        for (String url : imagesUrl) {
-            imageUris.add(Uri.parse(url));
+        HashMap<Integer, StringBuilder> hashMap = new HashMap<>();
+
+
+        int code = imagesUrl.iterator().hashCode();
+        System.out.println(code);
+        StringBuilder result;
+        StringBuilder img = null;
+
+
+
+        for (String url: imagesUrl) {
+//            System.out.println(url);
+            result = new StringBuilder();
+
+
+            result.append(url);
+            hashMap.put(code, result);
+
+            img = hashMap.get(code);
+//            System.out.println(img);
+
         }
 
-        Intent shareIntent = new Intent();
-        shareIntent.setAction(Intent.ACTION_SEND_MULTIPLE);
-        shareIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, imageUris);
-        shareIntent.setType("image/*");
-        startActivity(Intent.createChooser(shareIntent, null));
+
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        System.out.println(code);
+        intent.putExtra(Intent.EXTRA_TEXT, (Serializable) img);
+        Intent modIntent = Intent.createChooser(intent, "Send With..");
+        startActivity(modIntent);
 
     }
+
 }
