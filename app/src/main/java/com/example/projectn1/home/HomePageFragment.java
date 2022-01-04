@@ -49,7 +49,6 @@ public class HomePageFragment extends Fragment
     HomePageAdapter adapter = new HomePageAdapter();
     View view;
     SwipeRefreshLayout sR;
-    ArrayList<String> imagesUrl;
 
     boolean isInternetConnected = false;
 
@@ -78,7 +77,6 @@ public class HomePageFragment extends Fragment
             }
         });
 
-        imagesUrl = new ArrayList<>();
 
         return view;
     }
@@ -119,8 +117,6 @@ public class HomePageFragment extends Fragment
                                         R.drawable.photographer,
                                         s,
                                         photo.getSrc().getLargeUrl(), 0));
-
-                                imagesUrl.add(photo.getSrc().getLargeUrl());
 
                             }
                             adapter.setImages(profilePhoto);
@@ -227,38 +223,13 @@ public class HomePageFragment extends Fragment
                 "add_photo_dialog_fragment");
     }
 
-    @SuppressLint("QueryPermissionsNeeded")
+    @SuppressLint({"QueryPermissionsNeeded", "NewApi"})
     @Override
-    public void share(AppCompatImageView buttonShare) {
-
-        HashMap<Integer, StringBuilder> hashMap = new HashMap<>();
-
-
-        int code = imagesUrl.iterator().hashCode();
-        System.out.println(code);
-        StringBuilder result;
-        StringBuilder img = null;
-
-
-
-        for (String url: imagesUrl) {
-//            System.out.println(url);
-            result = new StringBuilder();
-
-
-            result.append(url);
-            hashMap.put(code, result);
-
-            img = hashMap.get(code);
-//            System.out.println(img);
-
-        }
-
+    public void share(AppCompatImageView buttonShare, String url) {
 
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
-        System.out.println(code);
-        intent.putExtra(Intent.EXTRA_TEXT, (Serializable) img);
+        intent.putExtra(Intent.EXTRA_TEXT, (Serializable) url);
         Intent modIntent = Intent.createChooser(intent, "Send With..");
         startActivity(modIntent);
 

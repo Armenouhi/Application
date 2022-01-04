@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.projectn1.R;
+import com.example.projectn1.dto.Images;
 import com.example.projectn1.home.dialogBottomFilters.DialogBottomCommentsActivity;
 
 import java.util.ArrayList;
@@ -74,7 +75,7 @@ public class HomePageAdapter extends RecyclerView.Adapter<HomePageHolder> {
         });
 
         holder.shareI.setOnClickListener(v -> {
-            shareListener.share(buttonShare);
+            shareListener.share(buttonShare, images.getImageUrl());
         });
 
     }
